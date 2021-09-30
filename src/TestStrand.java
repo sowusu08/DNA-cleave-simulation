@@ -94,6 +94,18 @@ public class TestStrand {
 	}
 
 	/**
+	 * This test checks if the number of appends is the same after reversing a IDnaStrand
+	 */
+	@Test
+	public void testReverseAppends() {
+		IDnaStrand str = getNewStrand(strs[0]);
+		int appends = str.getAppendCount();
+		IDnaStrand rev = str.reverse();
+		assertEquals(appends, rev.getAppendCount(), "This checks that you didn't modify append during reverse."
+				+ " Make sure not to update myAppends when reversing!");
+	}
+
+	/**
 	 * This test checks if reverse works correctly for strands with a single node
 	 */
 	@Test
