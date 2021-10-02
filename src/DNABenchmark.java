@@ -85,7 +85,7 @@ public class DNABenchmark {
 				thread.join();
 				time += (System.nanoTime() - start) / TRIALS / 1e9;
 			}
-			String ret = String.format("%s:\t%,15d\t%,15d\t%1.3f\t%d", className.substring(0,11), splicee.length(), recLength, time,
+			String ret = String.format("%s:\t%,15d\t%,15d\t%1.3f\t%d", className.substring(0,10), splicee.length(), recLength, time,
 					recomb.getAppendCount());
 
 			return ret;
