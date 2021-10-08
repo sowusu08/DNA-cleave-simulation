@@ -123,14 +123,16 @@ public class LinkStrand implements IDnaStrand{
             Node current = this.myFirst;
 
             // while "count" is not equal to the target index
-            while(overall_count != index){
-                // increase overall count by one
-                overall_count++;
+            while (overall_count != index) {
                 // increase within-node count by one
                 within_count++;
 
+                // increase overall count by one
+                overall_count++;
+
+
                 // if the within node count is equal to the length of the node
-                if(within_count >= current.info.length()){
+                if (within_count >= current.info.length()) {
                     // move to the next node; reset current to next node
                     current = current.next;
                     // reset within_count to zero
@@ -139,28 +141,28 @@ public class LinkStrand implements IDnaStrand{
             }
 
             // once overall_count == index..
-                // set myLocalIndex to within_count
+            // set myLocalIndex to within_count
             this.myLocalIndex = within_count;
-                // set myCurrent to the "current" node
+            // set myCurrent to the "current" node
             this.myCurrent = current;
-                // return the character at that node's "within_count" index
+            // return the character at that node's "within_count" index
             this.myLastChar = current.info.charAt(within_count);
             return this.myLastChar;
-            //ystem.out.println(this.myLastChar);
+            //System.out.println(this.myLastChar);
+
 
         } else { // if the index is greater than or equal to this.myIndex
-            // set myIndex instance variable to index
-            this.myIndex = index;
 
             int overall_count = this.myIndex;
             int within_count = this.myLocalIndex;
             Node current = this.myCurrent;
 
             while(overall_count != index){
-                // increase overall count by one; starts count at one
-                overall_count++;
                 // increase within-node count by one; starts count at one
                 within_count++;
+
+                // increase overall count by one; starts count at one
+                overall_count++;
 
                 // if the within node count is equal to the length of the node
                 if(within_count >= current.info.length()){
@@ -175,6 +177,8 @@ public class LinkStrand implements IDnaStrand{
             this.myLocalIndex = within_count;
                 // set myCurrent to the "current" node
             this.myCurrent = current;
+            // set myIndex instance variable to index
+            this.myIndex = index;
                 // return the character at that node's "within_count" index
             this.myLastChar = current.info.charAt(within_count);
             return this.myLastChar;
@@ -193,9 +197,4 @@ public class LinkStrand implements IDnaStrand{
         s.append(myLast.info);
         return s.toString();
     }
-
-   /* public static void main(String[] args) {
-        LinkStrand test = new LinkStrand("abcde");
-        test.charAt(0);
-    }*/
 }
