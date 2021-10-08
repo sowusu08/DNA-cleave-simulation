@@ -115,7 +115,7 @@ public class LinkStrand implements IDnaStrand{
             // set myIndex instance variable to index
             this.myIndex = index;
 
-            // initialize long "count" to count number of indices
+            // initialize int "count" to count number of indices
             int overall_count = 0;
             int within_count = 0;
 
@@ -144,15 +144,11 @@ public class LinkStrand implements IDnaStrand{
                 // set myCurrent to the "current" node
             this.myCurrent = current;
                 // return the character at that node's "within_count" index
-
             this.myLastChar = current.info.charAt(within_count);
             return this.myLastChar;
+            //ystem.out.println(this.myLastChar);
 
-        } else if(index == this.myIndex){   // if the index is called again (repeat in calls)
-            // return last charAt
-            return this.myLastChar;
-
-        } else { // if the index is greater than this.myIndex
+        } else { // if the index is greater than or equal to this.myIndex
             // set myIndex instance variable to index
             this.myIndex = index;
 
@@ -174,9 +170,15 @@ public class LinkStrand implements IDnaStrand{
                     within_count = 0;
                 }
             }
+            // once overall_count == index..
+                // set myLocalIndex to within_count
+            this.myLocalIndex = within_count;
+                // set myCurrent to the "current" node
+            this.myCurrent = current;
+                // return the character at that node's "within_count" index
             this.myLastChar = current.info.charAt(within_count);
             return this.myLastChar;
-
+            //System.out.println(this.myLastChar);
         }
     }
 
@@ -191,4 +193,9 @@ public class LinkStrand implements IDnaStrand{
         s.append(myLast.info);
         return s.toString();
     }
+
+   /* public static void main(String[] args) {
+        LinkStrand test = new LinkStrand("abcde");
+        test.charAt(0);
+    }*/
 }
