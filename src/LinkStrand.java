@@ -76,7 +76,7 @@ public class LinkStrand implements IDnaStrand{
         LinkStrand rev = new LinkStrand(flip(this.myFirst));
         // Get first node in original LinkStrand, flip() its contents, and use to initialize "rev"
         // this initializes rev.myFirst and rev.myLast as well
-        //rev.initialize(flip(this.myFirst));
+        rev.initialize(flip(this.myFirst));
         //rev.myFirst = new Node(flip(this.myFirst), null);
 
         // while the node referenced by "nextNode" is pointing to another node
@@ -92,7 +92,7 @@ public class LinkStrand implements IDnaStrand{
             nextNode = nextNode.next;
 
             // update rev.mySize
-            rev.mySize += nextNode.next.toString().length();
+            //rev.mySize += nextNode.next.toString().length();
         }
         return rev;
     }
