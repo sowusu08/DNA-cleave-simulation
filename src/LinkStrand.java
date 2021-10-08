@@ -91,9 +91,9 @@ public class LinkStrand implements IDnaStrand{
             // update nextNode to point to current node being evaluated from original LinkStrand
             nextNode = nextNode.next;
 
-            // update rev.mySize
-            //rev.mySize += nextNode.next.toString().length();
         }
+        // update rev.mySize
+        rev.mySize = this.mySize;
         return rev;
     }
 
