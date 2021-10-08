@@ -124,21 +124,23 @@ public class LinkStrand implements IDnaStrand{
 
             // while "count" is not equal to the target index
             while(overall_count != index){
-                // increase overall count by one; starts count at one
+                // increase overall count by one
                 overall_count++;
-                // increase within-node count by one; starts count at one
+                // increase within-node count by one
                 within_count++;
 
                 // if the within node count is equal to the length of the node
                 if(within_count >= current.info.length()){
                     // move to the next node; reset current to next node
                     current = current.next;
+                    // reset within_count to zero
+                    within_count = 0;
                 }
             }
 
             // once overall_count == index..
-                // set myLocalIndex to within_count - 1
-            this.myLocalIndex = within_count - 1;
+                // set myLocalIndex to within_count
+            this.myLocalIndex = within_count;
                 // set myCurrent to the "current" node
             this.myCurrent = current;
                 // return the character at that node's "within_count" index
@@ -151,6 +153,9 @@ public class LinkStrand implements IDnaStrand{
             return this.myLastChar;
 
         } else { // if the index is greater than this.myIndex
+            // set myIndex instance variable to index
+            this.myIndex = index;
+
             int overall_count = this.myIndex;
             int within_count = this.myLocalIndex;
             Node current = this.myCurrent;
@@ -165,6 +170,8 @@ public class LinkStrand implements IDnaStrand{
                 if(within_count >= current.info.length()){
                     // move to the next node; reset current to next node
                     current = current.next;
+                    // reset within_count to zero
+                    within_count = 0;
                 }
             }
             this.myLastChar = current.info.charAt(within_count);
