@@ -15,6 +15,7 @@ public class LinkStrand implements IDnaStrand{
     private int myIndex;
     private Node myCurrent;
     private int myLocalIndex;
+    private char myLastChar;
 
     public LinkStrand(){
         this("");
@@ -38,6 +39,7 @@ public class LinkStrand implements IDnaStrand{
         myLocalIndex=0;
         mySize=source.length();
         myAppends=0;
+        myLastChar = ' ';
     }
 
     @Override
@@ -104,7 +106,71 @@ public class LinkStrand implements IDnaStrand{
 
     @Override
     public char charAt(int index) {
-        return 0;
+        // initialize char last_char
+        //char last_char = ' ';
+
+        // when charAt() is called for the first time or the index comes before current index
+        // loop through each node and each element in each node ( O(N) )
+        if(this.myIndex == 0 | index < this.myIndex) {
+            // set myIndex instance variable to index
+            this.myIndex = index;
+
+            // initialize long "count" to count number of indices
+            int overall_count = 0;
+            int within_count = 0;
+
+            // initialize current to the first node
+            Node current = this.myFirst;
+
+            // while "count" is not equal to the target index
+            while(overall_count != index){
+                // increase overall count by one; starts count at one
+                overall_count++;
+                // increase within-node count by one; starts count at one
+                within_count++;
+
+                // if the within node count is equal to the length of the node
+                if(within_count >= current.info.length()){
+                    // move to the next node; reset current to next node
+                    current = current.next;
+                }
+            }
+
+            // once overall_count == index..
+                // set myLocalIndex to within_count - 1
+            this.myLocalIndex = within_count - 1;
+                // set myCurrent to the "current" node
+            this.myCurrent = current;
+                // return the character at that node's "within_count" index
+
+            this.myLastChar = current.info.charAt(within_count);
+            return this.myLastChar;
+
+        } else if(index == this.myIndex){   // if the index is called again (repeat in calls)
+            // return last charAt
+            return this.myLastChar;
+
+        } else { // if the index is greater than this.myIndex
+            int overall_count = this.myIndex;
+            int within_count = this.myLocalIndex;
+            Node current = this.myCurrent;
+
+            while(overall_count != index){
+                // increase overall count by one; starts count at one
+                overall_count++;
+                // increase within-node count by one; starts count at one
+                within_count++;
+
+                // if the within node count is equal to the length of the node
+                if(within_count >= current.info.length()){
+                    // move to the next node; reset current to next node
+                    current = current.next;
+                }
+            }
+            this.myLastChar = current.info.charAt(within_count);
+            return this.myLastChar;
+
+        }
     }
 
     @Override
