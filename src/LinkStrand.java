@@ -55,9 +55,46 @@ public class LinkStrand implements IDnaStrand{
         return this;
     }
 
+    // write method to flip contents of nodes
+    public static String flip(Node n){
+        // get content of node passed to flip() and store in temp StringBuilder object
+        StringBuilder temp = new StringBuilder(n.info);
+        // reverse temp StringBuilder object
+        temp.reverse();
+        // return reversed StringBuilder as a String
+        return temp.toString();
+    }
+
     @Override
     public IDnaStrand reverse() {
-        return null;
+        // Initialized LinkStrand "rev"
+        //LinkStrand rev = new LinkStrand();
+
+        // initialize "nextNode" to point to current node being evaluated from original LinkStrand
+        Node nextNode = this.myFirst;
+
+        LinkStrand rev = new LinkStrand(flip(this.myFirst));
+        // Get first node in original LinkStrand, flip() its contents, and use to initialize "rev"
+        // this initializes rev.myFirst and rev.myLast as well
+        //rev.initialize(flip(this.myFirst));
+        //rev.myFirst = new Node(flip(this.myFirst), null);
+
+        // while the node referenced by "nextNode" is pointing to another node
+        while(nextNode.next != null){
+            // create new node for "rev" has a value equal to flip(nextNode.next.info)
+            // and points to rev.myFirst
+            Node temp = new Node(flip(nextNode.next), rev.myFirst);
+
+            // update rev.myFirst to be the new node
+            rev.myFirst = temp;
+
+            // update nextNode to point to current node being evaluated from original LinkStrand
+            nextNode = nextNode.next;
+
+            // update rev.mySize
+            rev.mySize += nextNode.next.toString().length();
+        }
+        return rev;
     }
 
     @Override
