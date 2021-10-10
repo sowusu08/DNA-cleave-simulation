@@ -58,7 +58,7 @@ public class LinkStrand implements IDnaStrand{
     }
 
     // write method to flip contents of nodes
-    public static String flip(Node n){
+    private static String flip(Node n){
         // get content of node passed to flip() and store in temp StringBuilder object
         StringBuilder temp = new StringBuilder(n.info);
         // reverse temp StringBuilder object
