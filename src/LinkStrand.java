@@ -106,8 +106,10 @@ public class LinkStrand implements IDnaStrand{
 
     @Override
     public char charAt(int index) {
-        // initialize char last_char
-        //char last_char = ' ';
+        // if the index is less than zer throw and index out of bounds exception
+        if(index < 0) {
+            throw new IndexOutOfBoundsException("Index out of bounds");
+        }
 
         // when charAt() is called for the first time or the index comes before current index
         // loop through each node and each element in each node ( O(N) )
