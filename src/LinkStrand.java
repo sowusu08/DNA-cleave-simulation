@@ -1,3 +1,5 @@
+import java.lang.*;
+
 public class LinkStrand implements IDnaStrand{
     private class Node {
         String info;
@@ -108,7 +110,7 @@ public class LinkStrand implements IDnaStrand{
     public char charAt(int index) {
         // if the index is less than zer throw and index out of bounds exception
         if(index < 0) {
-            throw new IndexOutOfBoundsException("Index out of bounds");
+            throw new IndexOutOfBoundsException();
         }
 
         // when charAt() is called for the first time or the index comes before current index
